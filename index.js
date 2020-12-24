@@ -27,6 +27,7 @@ function getupdateinfo() {
         });
         if (lastupdate !== newupdate) {
             if (!lastupdate) return lastupdate = newupdate;
+            console.log("데이터 다름");
             $(content).each((index, list) => {
                 const target = $(list).find('a');
                 if (target.length) target.replaceWith(`[${target.text()}](${target.attr("href")})`);
@@ -57,7 +58,10 @@ function getupdateinfo() {
                     }
                 }]
             });
-        } else lastupdate = newupdate;
+        } else {
+            lastupdate = newupdate;
+            console.log("데이터 같음");
+        }
         //console.log(r.split('<div class="moreless-content">')[1].split("</p>")[0].replace(/<br \/>/g, "\n").replace("<p>", "").trim());
     });
 }
@@ -89,3 +93,4 @@ function httpsreq(obj) {
 }
 setInterval(getupdateinfo, 5000);
 getupdateinfo();
+console.log("puw 시작.");
